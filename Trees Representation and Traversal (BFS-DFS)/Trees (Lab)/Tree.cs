@@ -58,7 +58,7 @@
                 return result;
             }
 
-            Dfs(this, result);
+            this.Dfs(this, result);
 
             return result;
         }
