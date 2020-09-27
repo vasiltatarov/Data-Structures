@@ -69,46 +69,39 @@
         public T RemoveFirst()  
         {
             CheckIfIsEmpty();
-                 
-            var current = this._head;
-
+            var firstElement = this.GetFirst();
             this._head = this._head.Next;
             this.Count--;
 
-            return current.Item;
+            return firstElement;
         }
 
         public T RemoveLast()
         {
-            CheckIfIsEmpty();
+            this.EnsureNotEmpty();
+            var lastElement = this.GetLast();
+            var current = this._head;
 
             if (this.Count == 1)
             {
-                var value = this._head.Item;
-
-                this._head = null;
-
-                this.Count--;
-
-                return value;
+                this._head = default;
             }
             else
             {
-                var preLast = this._head;
-                var toRemove = this._head.Next;
+                Node<T> prevLast = null;
 
-                while (toRemove.Next != null)
+                while (current.Next != null)
                 {
-                    preLast = toRemove;
-                    toRemove = toRemove.Next;
+                    prevLast = current;
+                    current = current.Next;
                 }
 
-                preLast.Next = null;
-
-                this.Count--;
-
-                return toRemove.Item;
+                prevLast.Next = null;
             }
+
+            this.Count--;
+
+            return lastElement;
         }
 
         public IEnumerator<T> GetEnumerator()   
