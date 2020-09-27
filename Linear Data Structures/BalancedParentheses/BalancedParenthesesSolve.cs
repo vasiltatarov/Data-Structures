@@ -1,6 +1,5 @@
 ﻿namespace Problem04.BalancedParentheses
 {
-    using System;
     using System.Collections.Generic;
 
     public class BalancedParenthesesSolve : ISolvable
@@ -14,36 +13,38 @@
 
             var stack = new Stack<char>();
 
-            for (int i = 0; i < parentheses.Length; i++)
+            foreach (var parenthes in parentheses)
             {
-                var currParentheses = parentheses[i];
                 char expectedParentheses = default;
+                var isClosed = false;
 
-                if (currParentheses == '(' || currParentheses == '[' || currParentheses == '{')
+                if (parenthes == '(' || parenthes == '[' || parenthes == '{')
                 {
-                    stack.Push(currParentheses);
+                    stack.Push(parenthes);
                     continue;
                 }
-                else  if (currParentheses == ')')
+                else if (parenthes == ')')
                 {
                     expectedParentheses = '(';
+                    isClosed = true;
                 }
-                else if (currParentheses == ']')
+                else if (parenthes == ']')
                 {
                     expectedParentheses = '[';
+                    isClosed = true;
                 }
-                else if (currParentheses == '}')
+                else if (parenthes == '}')
                 {
                     expectedParentheses = '{';
+                    isClosed = true;
                 }
 
-                if (stack.Pop() == expectedParentheses)
+                if (isClosed)
                 {
-                    continue;
-                }
-                else
-                {
-                    return false;
+                    if (stack.Count == 0 || stack.Pop() != expectedParentheses)
+                    {
+                        return false;
+                    }
                 }
             }
 
