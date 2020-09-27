@@ -47,11 +47,11 @@
 
             var topNodeItem = this._top.Item;
 
-            var newNode = this._top.Next;
+            var newTopNode = this._top.Next;
 
             this._top.Next = null;
 
-            this._top = newNode;
+            this._top = newTopNode;
             this.Count--;
 
             return topNodeItem;
