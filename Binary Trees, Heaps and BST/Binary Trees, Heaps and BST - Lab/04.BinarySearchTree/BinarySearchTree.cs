@@ -14,18 +14,6 @@
             this.Copy(root);
         }
 
-        private void Copy(Node<T> root)
-        {
-            if (IsRootIsNull(root))
-            {
-                return;
-            }
-
-            this.Insert(root.Value);
-            this.Copy(root.LeftChild);
-            this.Copy(root.RightChild);
-        }
-
         public Node<T> Root { get; private set; }
 
         public Node<T> LeftChild { get; private set; }
@@ -126,6 +114,18 @@
             }
 
             return new BinarySearchTree<T>(current);
+        }
+        
+        private void Copy(Node<T> root)
+        {
+            if (IsRootIsNull(root))
+            {
+                return;
+            }
+
+            this.Insert(root.Value);
+            this.Copy(root.LeftChild);
+            this.Copy(root.RightChild);
         }
 
         private bool AreEqual(T element, T value)
