@@ -5,7 +5,9 @@
     interface IAbstractTree<T>
     {
         T Value { get; }
+
         Tree<T> Parent { get; }
+
         IReadOnlyCollection<Tree<T>> Children { get; }
 
         ICollection<T> OrderBfs();
